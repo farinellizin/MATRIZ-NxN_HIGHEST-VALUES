@@ -1,16 +1,18 @@
-#ifndef __DESAFIO_H
-#define __DESAFIO_H
+#ifndef DESAFIO_H
+#define DESAFIO_H
 #define standart_value 7
 
-typedef struct valor {
-	int value;
-} Valor ;
+typedef struct v {
+	int val;
+} Value;
 
-typedef struct matriz {
-	Valor mat[standart_value][standart_value];
-} Matriz;
+typedef struct m {
+	Value mat[standart_value][standart_value];
+} Matrix;
 
-void fill_matrix(Matriz *it, Valor);
-
+//void fill_matrix(Matrix *it, Value val);
+int next_right_side(Matrix *it, Value val, int i, int j);
+int next_left_side(Matrix *it, Value val, int i, int j);
+int next_under(Matrix *it, Value val, int i, int j);
 
 #endif

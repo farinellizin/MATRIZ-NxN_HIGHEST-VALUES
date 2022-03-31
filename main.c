@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include "Desafio.h"
-//#include "Desafio.c"
+#include "Desafio.c"
 
 int main() {
 	
@@ -98,7 +97,7 @@ int main() {
 		}
 	}
 		
-	printf("==> %d  <==\n", total);
+	printf("==>  %d  <==\n", total);
 	
 	system("pause");
 	return 0;
