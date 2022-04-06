@@ -35,7 +35,7 @@
 
 # Social Media
 
- Twitter: @farinellizin
+* Twitter: @farinellizin
 * Instagram: @farinellizin
 * E-mail: lucasfcpinho@gmail.com
 
