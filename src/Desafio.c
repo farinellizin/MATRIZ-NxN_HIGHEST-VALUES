@@ -3,12 +3,10 @@
 int next_right_side (Value x[TAM][TAM], int i, int j) {
     int next_right_side_value = 0;
 
-    if (j == (TAM - 1))
+    if (!(j == (TAM - 1)))
 		{
-			next_right_side_value = 0;
-		} else {
 			next_right_side_value = x[i][j + 1].val;
-		}
+		} 
 
     return next_right_side_value;
 }
@@ -16,10 +14,8 @@ int next_right_side (Value x[TAM][TAM], int i, int j) {
 int next_left_side (Value x[TAM][TAM], int i, int j) {
     int next_left_side_value = 0;
 
-    if ((j == 0) || (i == (TAM - 1)))
+    if (!((j == 0) || (i == (TAM - 1))))
     {
-        next_left_side_value = 0;
-    } else {
         next_left_side_value = x[i][j - 1].val;
     }
 
@@ -29,10 +25,8 @@ int next_left_side (Value x[TAM][TAM], int i, int j) {
 int next_under (Value x[TAM][TAM], int i, int j) {
     int next_under_value = 0;
     
-    if (i == (TAM - 1))
+    if (!(i == (TAM - 1)))
     {
-        next_under_value = 0;
-    } else {
         next_under_value = x[i + 1][j].val;
     }
 
@@ -40,21 +34,7 @@ int next_under (Value x[TAM][TAM], int i, int j) {
 }
 
 void roam_through_matrix(Value x[TAM][TAM]) {
-    int i, j, total, current, right_value, left_value, under_value;
-
-    printf("\n\n\n\t- This is the Array that will be traversed:\n\n");
-
-    for (i = 0; i < TAM; i++)
-	{
-		printf("\t\t");
-        for (j = 0; j < TAM; j++)
-		{
-			printf("%d\t", x[i][j].val);
-		}
-		printf("\n");
-	}
-
-    i = 0; j = 0; current = x[i][j].val; total = current;
+    int i = 0, j = 0, current = x[i][j].val, total = current, right_value, left_value, under_value;
 
     while ((i != (TAM - 1)) || (j != (TAM - 1)))
 	{
