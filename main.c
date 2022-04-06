@@ -1,113 +1,102 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "Desafio.h"
+#include "Desafio.c"
 
-////int main() {
-////	
-////	int matriz[7][7], i, j, k = 0;
-////	
-////	for (i = 0; i < 7; i++)
-////	{
-////		for (j = 0; j < 7; j++)
-////		{
-////			matriz[i][j] = rand() % 100;
-////			printf("%d\t", matriz[i][j]);
-////		}
-////		printf("\n");
-////	}
-////
-////	 PERCORRENDO A MATRIZ
-////	i = 0; 
-////	j = 0;
-////	int armazena[50], atual = matriz[i][j], m;
-////	int valor_esquerda = 0, valor_direita = 0, valor_abaixo = 0;
-////	
-////	for (m = 0; m < 50; m++)
-////	{
-////		armazena[m] = -1;
-////	}
-////	
-////	while ((j != 6) || (i != 6))
-////	{
-////		armazena[k] = atual;
-////		
-////		 PROXIMA POSICAO ESQUERDA
-////		if (j == 0)
-////		{
-////			valor_esquerda = 0;
-////		} else {
-////			valor_esquerda = matriz[i][j - 1];
-////		}
-////		
-////		 PROXIMA POSICAO DIREITA
-////		if (j == 6)
-////		{
-////			valor_direita = 0;
-////		} else {
-////			valor_direita = matriz[i][j + 1];
-////		}
-////		
-////		 PROXIMA POSICAO ABAIXO
-////		if (i == 6)
-////		{
-////			valor_abaixo = 0;
-////			valor_esquerda = 0;
-////		} else {
-////			valor_abaixo = matriz[i + 1][j];
-////		}
-////		
-////		 COMPARANDO TODOS OS VALORES PARA SABER QUAL SERA O NOVO ATUAL
-////		
-////		printf("%d", armazena[k]);
-////		printf("\t%d\n", valor_esquerda);
-////		
-////		if ((valor_esquerda > valor_direita) && (valor_esquerda > valor_abaixo) && (valor_esquerda != armazena[k - 1]) && (j != 0))
-////		{
-////			atual = valor_esquerda;
-////			j--;
-////		}
-////		
-////		if (valor_esquerda == armazena[k - 1])
-////		{
-////			valor_esquerda = 0;
-////		}
-////		
-////		if ((valor_direita > valor_esquerda) && (valor_direita > valor_abaixo) && (j != 6))
-////		{
-////			atual = valor_direita;
-////			j++;
-////		}
-////		
-////		if ((valor_abaixo > valor_direita) && (valor_abaixo > valor_esquerda))
-////		{
-////			atual = valor_abaixo;
-////			i++;
-////		}
-////		k++;
-////	}
-////	armazena[k] = atual;
-////	
-////	int total = 0;
-////	
-////	for (i = 0; i < 50; i++)
-////	{
-////		if (armazena[i] != -1)
-////		{
-////			total += armazena[i];
-////		}
-////	}
-////		
-////	printf("==>  %d  <==\n", total);
-////	
-////	system("pause");
-////	return 0;
-////}
+void fill_matrix(Value x[TAM][TAM])
+{
+	int i, j;
+
+	for (i = 0; i < TAM; i++)
+	{
+		for (j = 0; j < TAM; j++)
+		{
+			x[i][j].val = rand() % 100;
+		}
+	}
+}
 
 int main ()
 {
-	roam_through_matrix();
+	printf("\n");
 	
+	Value mat[TAM][TAM];
+
+	fill_matrix(mat);
+
+	int i, j, total;
+	int atual;
+
+	for (i = 0; i < TAM; i++)
+	{
+		for (j = 0; j < TAM; j++)
+		{
+			printf("%d\t", mat[i][j].val);
+		}
+		printf("\n");
+	}
+
+	i = 0; j = 0;
+	int valor_direita = 0, valor_esquerda = 0, valor_abaixo = 0;
+	atual = mat[i][j].val; total = atual;
+
+	printf("\n TOTAL => %d", total);
+
+	while ((i != (TAM - 1)) || (j != (TAM - 1)))
+	{
+		// DESCOBRINDO VALOR DA DIREITA // 
+
+		if (j == (TAM - 1))
+		{
+			valor_direita = 0;
+		} else {
+			valor_direita = mat[i][j + 1].val;
+		}
+
+		// DESCOBRINDO VALOR DA ESQUERDA //
+
+		/* ------> */if (j == 0)
+		{
+			valor_esquerda = 0;
+		} else {
+			valor_esquerda = mat[i][j - 1].val;
+		}
+
+		// DESCOBRINDO VALOR DE BAIXO //
+
+		if (i == (TAM - 1))
+		{
+			valor_abaixo = 0;
+			valor_esquerda = 0;
+		} else {
+			valor_abaixo = mat[i + 1][j].val;
+		}
+
+		// COMPARANDO VALORES //
+
+		if ((valor_direita > valor_esquerda) && (valor_direita > valor_abaixo))
+		{
+			mat[i][j].val = -1;
+			j++;
+			atual = mat[i][j].val;
+			total += atual;
+		}
+
+		if ((valor_esquerda > valor_direita) && (valor_esquerda > valor_abaixo))
+		{
+			mat[i][j].val = -1;
+			j--;
+			atual = mat[i][j].val;
+			total += atual;
+		}
+
+		if ((valor_abaixo >= valor_direita) && (valor_abaixo >= valor_esquerda))
+		{
+			mat[i][j].val = -1;
+			i++;
+			atual = mat[i][j].val;
+			total += atual;
+		}
+	}
 	
-	system("pause");
+	printf("\t\t\t ==> VALOR TOTAL: %d\n\n\n", total);
+
 	return 0;
-}
+	}	

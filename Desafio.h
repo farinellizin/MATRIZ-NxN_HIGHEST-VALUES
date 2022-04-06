@@ -2,25 +2,19 @@
 #define DESAFIO_H
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_TAM 2
+#define TAM 11
+typedef struct Value Value;
+typedef struct Matrix Matrix;
 
-typedef struct v {
+struct Value {
 	int val;
-} Value;
+};
 
-typedef struct m {
-	Value mat[MAX_TAM][MAX_TAM];
-} Matrix;
+struct Matrix {
+	Value mat[TAM][TAM];
+};
 
-//void fill_matrix(Matrix *it, Value val);
+void roam_through_matrix(Value x[TAM][TAM], int i, int j);
 
-// ENCONTRANDO NOVAS POSICOES
+#endif 
 
-int next_right_side(Matrix *it, int i, int j, int size);
-int next_left_side(Matrix *it, Value val, int i, int j, int size);
-int next_under(Matrix *it, Value val, int i, int j, int size);
-
-// PERCORRENDO A MATRIZ
-void roam_through_matrix(/*Matrix *it, Value val*/);
-
-#endif
