@@ -3,7 +3,7 @@
 
 void fill_matrix(Value x[TAM][TAM])
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	int i, j;
 
 	printf("\n\n\n\t- This is the Array that will be traversed:\n\n");
