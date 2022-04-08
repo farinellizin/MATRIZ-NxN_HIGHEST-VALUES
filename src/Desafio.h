@@ -2,6 +2,8 @@
 #define DESAFIO_H
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <time.h>
 #define TAM 7
 typedef struct Value Value;
 typedef struct Matrix Matrix;
